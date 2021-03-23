@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import DashboardScreen from './screens/DashboardScreen'
+import AppMenu from './components/AppMenu'
+import Footer from './components/Footer'
 
-function App() {
+/*
+ *
+ * CUSTOM THEMEING MUI
+ *
+ */
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#1B5D6B',
+    },
+    secondary: {
+      main: '#E7662E',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'VariableBlack',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+})
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <ThemeProvider theme={theme}>
+        <AppMenu />
+        <main>
+          <Route path="/" component={DashboardScreen} exact />
+        </main>
+        <Footer />
+      </ThemeProvider>
+    </Router>
+  )
 }
 
-export default App;
+export default App

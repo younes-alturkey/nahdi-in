@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import DashboardScreen from './screens/DashboardScreen'
 import AppMenu from './components/AppMenu'
+import WelPresentation from './components/WelPresentation'
 import Footer from './components/Footer'
 
 /*
@@ -43,6 +44,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <AppMenu />
         <main>
+          <Route path="/welcome" component={WelPresentation} exact />
           <Route path="/" component={DashboardScreen} exact />
         </main>
         <Footer />

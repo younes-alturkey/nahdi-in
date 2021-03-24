@@ -195,7 +195,7 @@ export default function AppMenu() {
           <ListItemIcon>
             <SchoolIcon color="primary" />
           </ListItemIcon>
-          <ListItemText primary="Meet Nadhi Alumni" />
+          <ListItemText primary="Program Alumni" />
         </ListItem>
 
         <ListItem button key="team">

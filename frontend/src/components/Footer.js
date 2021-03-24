@@ -13,7 +13,7 @@ const Footer = () => {
           target="_blank"
           href="https://www.nahdi.sa/en/"
         >
-          2021 &copy; Nahdi
+          Nahdi Medical Company &copy; {new Date().getFullYear()}
         </Link>
       </Typography>
     </Container>

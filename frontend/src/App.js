@@ -1,10 +1,13 @@
 import React from 'react'
+import store from './store'
+import { StoreProvider } from 'easy-peasy'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import DashboardScreen from './screens/DashboardScreen'
 import AppMenu from './components/AppMenu'
-import WelPresentation from './components/WelPresentation'
 import Footer from './components/Footer'
+import DashboardScreen from './screens/DashboardScreen'
+import PresentationScreen from './screens/PresentationScreen'
+import AccountScreen from './screens/AccountScreen'
 
 /*
  *
@@ -40,16 +43,19 @@ const theme = createMuiTheme({
 
 const App = () => {
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <AppMenu />
-        <main>
-          <Route path="/welcome" component={WelPresentation} exact />
-          <Route path="/" component={DashboardScreen} exact />
-        </main>
-        <Footer />
-      </ThemeProvider>
-    </Router>
+    <StoreProvider store={store}>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <AppMenu />
+          <main>
+            <Route path="/account" component={AccountScreen} />
+            <Route path="/welcome" component={PresentationScreen} />
+            <Route path="/" component={DashboardScreen} exact />
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </Router>
+    </StoreProvider>
   )
 }
 

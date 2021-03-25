@@ -1,4 +1,5 @@
 import React from 'react'
+import { useStoreState } from 'easy-peasy'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import { fade, makeStyles } from '@material-ui/core/styles'
@@ -121,6 +122,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function AppMenu() {
+  const user = useStoreState((state) => state.userData)
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
@@ -286,8 +288,10 @@ export default function AppMenu() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose} component={Link} to={'/account'}>
+        Account
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   )
 
@@ -327,7 +331,7 @@ export default function AppMenu() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>{user.name}</p>
       </MenuItem>
     </Menu>
   )
@@ -399,6 +403,9 @@ export default function AppMenu() {
               color="inherit"
             >
               <AccountCircle />
+              <Typography style={{ paddingLeft: '0.5rem' }}>
+                {user.name}
+              </Typography>
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>

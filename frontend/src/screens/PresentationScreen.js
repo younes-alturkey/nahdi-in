@@ -1,7 +1,7 @@
 import React from 'react'
-import Loading from './Loading'
+import Loading from '../components/Loading'
 
-const WelPresentation = () => {
+const PresentationScreen = () => {
   return (
     <div style={{ width: '100%', height: '100%' }}>
       <Loading />
@@ -14,4 +14,4 @@ const WelPresentation = () => {
   )
 }
 
-export default WelPresentation
+export default PresentationScreen

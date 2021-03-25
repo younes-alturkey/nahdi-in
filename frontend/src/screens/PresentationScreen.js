@@ -8,7 +8,7 @@ const PresentationScreen = () => {
       <iframe
         title="WelcomePresentation"
         className="presentation"
-        src="https://younes-alturkey.github.io/Nahdi-Wel-Pre/"
+        src="https://younes-alturkey.github.io/nahdi-wel-pre/"
       />
     </div>
   )

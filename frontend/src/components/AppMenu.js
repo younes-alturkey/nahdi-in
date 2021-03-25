@@ -21,7 +21,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import GroupIcon from '@material-ui/icons/Group'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents'
 import NewReleasesIcon from '@material-ui/icons/NewReleases'
 import Drawer from '@material-ui/core/Drawer'
@@ -183,6 +182,7 @@ export default function AppMenu() {
           />
         </ListItem>
         <Divider />
+        <br />
 
         <ListItem button key="welcome" component={Link} to={'/welcome'}>
           <ListItemIcon>
@@ -269,16 +269,7 @@ export default function AppMenu() {
           <ListItemIcon>
             <ThumbsUpDownIcon color="primary" />
           </ListItemIcon>
-          <ListItemText primary="Constant Feedback" />
-        </ListItem>
-      </List>
-      <List>
-        <Divider />
-        <ListItem button key="logout">
-          <ListItemIcon>
-            <ExitToAppIcon color="secondary" />
-          </ListItemIcon>
-          <ListItemText primary="Logout" className={classes.logout} />
+          <ListItemText primary="Onboarding Survey" />
         </ListItem>
       </List>
     </div>
@@ -353,7 +344,7 @@ export default function AppMenu() {
         </Drawer>
       </React.Fragment>
 
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <IconButton
             edge="start"

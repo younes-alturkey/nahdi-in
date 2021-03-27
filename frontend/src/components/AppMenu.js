@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
+import Container from '@material-ui/core/Container'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
@@ -11,7 +12,7 @@ import Badge from '@material-ui/core/Badge'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import MenuIcon from '@material-ui/icons/Menu'
-import AccountCircle from '@material-ui/icons/AccountCircle'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
@@ -21,19 +22,19 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import GroupIcon from '@material-ui/icons/Group'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import EmojiEventsIcon from '@material-ui/icons/EmojiEvents'
-import NewReleasesIcon from '@material-ui/icons/NewReleases'
 import Drawer from '@material-ui/core/Drawer'
 import Avatar from '@material-ui/core/Avatar'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import ThumbsUpDownIcon from '@material-ui/icons/ThumbsUpDown'
-import FileCopyIcon from '@material-ui/icons/FileCopy'
-import Collapse from '@material-ui/core/Collapse'
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
-import SchoolIcon from '@material-ui/icons/School'
+import DescriptionIcon from '@material-ui/icons/Description'
+import Switch from '@material-ui/core/Switch'
+import HomeIcon from '@material-ui/icons/Home'
+import CastForEducationIcon from '@material-ui/icons/CastForEducation'
+import TextsmsIcon from '@material-ui/icons/Textsms'
+import SlideshowIcon from '@material-ui/icons/Slideshow'
+import ExtensionIcon from '@material-ui/icons/Extension'
 import logoImage from '../assets/images/logo.png'
-import logoImageTxt from '../assets/images/logo-txt.png'
+import userImage from '../assets/images/barrak.png'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -41,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    display: 'black',
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
   title: {
     // display: 'none',
@@ -51,9 +56,10 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     marginRight: theme.spacing(2),
   },
-  txtLogo: {
+  drawerLogo: {
     margin: theme.spacing(3),
     height: '50%',
+    width: '50%',
   },
   search: {
     position: 'relative',
@@ -105,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   list: {
-    width: 300,
+    width: 280,
   },
   fullList: {
     width: 'auto',
@@ -121,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function AppMenu() {
+export default function AppMenu({ toggleDarkMode, SignInHandler }) {
   const user = useStoreState((state) => state.userData)
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -132,6 +138,7 @@ export default function AppMenu() {
     bottom: false,
     right: false,
   })
+  const [checked, setChecked] = React.useState(false)
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -176,100 +183,51 @@ export default function AppMenu() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem button key="logo" component={Link} to={'/'}>
-          <img
-            alt="Nahdi Logo"
-            src={logoImageTxt}
-            className={classes.txtLogo}
-          />
+        <ListItem button key="home" component={Link} to={'/'}>
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
         </ListItem>
-        <Divider />
-        <br />
 
         <ListItem button key="welcome" component={Link} to={'/welcome'}>
           <ListItemIcon>
-            <FavoriteIcon color="primary" />
+            <SlideshowIcon />
           </ListItemIcon>
-          <ListItemText primary="Welcome to The Family" />
+          <ListItemText primary="Hi Presentation" />
         </ListItem>
 
-        <ListItem button key="alumni">
+        <ListItem button key="team" component={Link} to={'/team'}>
           <ListItemIcon>
-            <SchoolIcon color="primary" />
+            <GroupIcon />
           </ListItemIcon>
-          <ListItemText primary="Program Alumni" />
+          <ListItemText primary="My Team" />
         </ListItem>
 
-        <ListItem button key="team">
+        <ListItem button key="learn" component={Link} to={'/learning'}>
           <ListItemIcon>
-            <GroupIcon color="primary" />
+            <CastForEducationIcon />
           </ListItemIcon>
-          <ListItemText primary="Meet Your Team" />
+          <ListItemText primary="Learning" />
         </ListItem>
 
-        <ListItem button key="quiz">
+        <ListItem button key="quiz" component={Link} to={'/quiz'}>
           <ListItemIcon>
-            <EmojiEventsIcon color="primary" />
+            <ExtensionIcon />
           </ListItemIcon>
-          <ListItemText primary="Quiz Your Knowledge" />
+          <ListItemText primary="Nahdi Knowledge Quiz" />
         </ListItem>
 
-        <ListItem button key="learn">
+        <ListItem button key="file" component={Link} to={'/files'}>
           <ListItemIcon>
-            <NewReleasesIcon color="primary" />
-          </ListItemIcon>
-          <ListItemText primary="Learn Nahdi Essentials" />
-        </ListItem>
-
-        <Collapse in={true} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ArrowForwardIosIcon />
-              </ListItemIcon>
-              <ListItemText primary="Outlook Skills" />
-            </ListItem>
-
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ArrowForwardIosIcon />
-              </ListItemIcon>
-              <ListItemText primary="Excel Skills" />
-            </ListItem>
-
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ArrowForwardIosIcon />
-              </ListItemIcon>
-              <ListItemText primary="Powerpoint Skills" />
-            </ListItem>
-
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ArrowForwardIosIcon />
-              </ListItemIcon>
-              <ListItemText primary="Presentation Guidelines" />
-            </ListItem>
-
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <ArrowForwardIosIcon />
-              </ListItemIcon>
-              <ListItemText primary="Meetings and Calendar" />
-            </ListItem>
-          </List>
-        </Collapse>
-
-        <ListItem button key="file">
-          <ListItemIcon>
-            <FileCopyIcon color="primary" />
+            <DescriptionIcon />
           </ListItemIcon>
           <ListItemText primary="Files and Documents" />
         </ListItem>
 
-        <ListItem button key="feedback">
+        <ListItem button key="feedback" component={Link} to={'/survey'}>
           <ListItemIcon>
-            <ThumbsUpDownIcon color="primary" />
+            <ThumbsUpDownIcon />
           </ListItemIcon>
           <ListItemText primary="Onboarding Survey" />
         </ListItem>
@@ -291,7 +249,14 @@ export default function AppMenu() {
       <MenuItem onClick={handleMenuClose} component={Link} to={'/account'}>
         Account
       </MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleMenuClose()
+          SignInHandler()
+        }}
+      >
+        Logout
+      </MenuItem>
     </Menu>
   )
 
@@ -305,33 +270,39 @@ export default function AppMenu() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
+      onClick={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
+      <MenuItem component={Link} to={'/account'}>
+        <IconButton color="inherit">
+          <Avatar
+            style={{ width: '1.5rem', height: '1.5rem' }}
+            alt="User Image"
+            src={userImage}
+          />
         </IconButton>
         <p>{user.name}</p>
       </MenuItem>
       <MenuItem component={Link} to={'/message'}>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
+        <IconButton>
+          <Badge badgeContent={5} color="secondary">
             <MailIcon />
           </Badge>
         </IconButton>
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
+        <IconButton>
+          <Badge badgeContent={3} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
+      </MenuItem>
+      <MenuItem onClick={() => SignInHandler()}>
+        <IconButton>
+          <ExitToAppIcon />
+        </IconButton>
+        <p>Logout</p>
       </MenuItem>
     </Menu>
   )
@@ -349,77 +320,193 @@ export default function AppMenu() {
       </React.Fragment>
 
       <AppBar position="sticky">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer(anchor, true)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <ButtonBase component={Link} to={'/'}>
-            <Avatar className={classes.logo} alt="Nahdi Logo" src={logoImage} />
-            <Typography className={classes.title} variant="h6" noWrap>
-              Nahdi In
-            </Typography>
-          </ButtonBase>
-
-          {/*
-            DISABLED SEARCH COMPONENT
-          */}
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div> */}
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+        <Container>
+          <Toolbar>
             <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              edge="start"
+              className={classes.menuButton}
               color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer(anchor, true)}
             >
-              <AccountCircle />
-              <Typography style={{ paddingLeft: '0.5rem' }}>
-                {user.name}
+              <MenuIcon />
+            </IconButton>
+            <ButtonBase component={Link} to={'/'}>
+              <Avatar
+                className={classes.logo}
+                alt="Nahdi Logo"
+                src={logoImage}
+              />
+              <Typography className={classes.title} variant="h6" nowrap="true">
+                Nahdi In
               </Typography>
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
+            </ButtonBase>
+
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <IconButton
+                edge="start"
+                color="inherit"
+                size="small"
+                style={{
+                  marginRight: '2rem',
+                }}
+                component={Link}
+                to={'/'}
+              >
+                <div style={{ flexDirection: 'column' }}>
+                  <HomeIcon />
+                  <Typography nowrap="true">Home</Typography>
+                </div>
+              </IconButton>
+
+              <IconButton
+                edge="start"
+                color="inherit"
+                size="small"
+                style={{
+                  marginRight: '2rem',
+                }}
+                component={Link}
+                to={'/welcome'}
+              >
+                <div style={{ flexDirection: 'column' }}>
+                  <SlideshowIcon />
+                  <Typography nowrap="true">Hi</Typography>
+                </div>
+              </IconButton>
+
+              <IconButton
+                edge="start"
+                color="inherit"
+                size="small"
+                style={{
+                  marginRight: '2rem',
+                }}
+                component={Link}
+                to={'/team'}
+              >
+                <div style={{ flexDirection: 'column' }}>
+                  <GroupIcon />
+                  <Typography nowrap="true">My Team</Typography>
+                </div>
+              </IconButton>
+
+              <IconButton
+                edge="start"
+                color="inherit"
+                size="small"
+                style={{
+                  marginRight: '2rem',
+                }}
+                component={Link}
+                to={'/quiz'}
+              >
+                <div style={{ flexDirection: 'column' }}>
+                  <ExtensionIcon />
+                  <Typography nowrap="true">Quiz</Typography>
+                </div>
+              </IconButton>
+
+              <IconButton
+                edge="start"
+                color="inherit"
+                size="small"
+                style={{
+                  marginRight: '2rem',
+                }}
+                component={Link}
+                to={'/learning'}
+              >
+                <div style={{ flexDirection: 'column' }}>
+                  <CastForEducationIcon />
+                  <Typography nowrap="true">Learning</Typography>
+                </div>
+              </IconButton>
+
+              <IconButton
+                edge="start"
+                color="inherit"
+                size="small"
+                style={{
+                  marginRight: '2rem',
+                }}
+                component={Link}
+                to={'/files'}
+              >
+                <div style={{ flexDirection: 'column' }}>
+                  <DescriptionIcon />
+                  <Typography nowrap="true">Files</Typography>
+                </div>
+              </IconButton>
+
+              <IconButton
+                edge="start"
+                color="inherit"
+                size="small"
+                style={{
+                  marginRight: '2rem',
+                }}
+                component={Link}
+                to={'/survey'}
+              >
+                <div style={{ flexDirection: 'column' }}>
+                  <ThumbsUpDownIcon />
+                  <Typography nowrap="true">Survey</Typography>
+                </div>
+              </IconButton>
+
+              <Divider orientation="vertical" flexItem />
+
+              <IconButton color="inherit">
+                <Badge badgeContent={5} color="secondary">
+                  <TextsmsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton color="inherit">
+                <Badge badgeContent={3} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                edge="end"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <Avatar
+                  style={{ width: '1.5rem', height: '1.5rem' }}
+                  alt="User Image"
+                  src={userImage}
+                />
+                <Typography style={{ paddingLeft: '0.5rem' }}>
+                  {user.name}
+                </Typography>
+              </IconButton>
+            </div>
+            <Switch
+              checked={checked}
+              onChange={() => {
+                toggleDarkMode()
+                setChecked(!checked)
+              }}
+              name="darkmodeswitch"
+              inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />
+            <div className={classes.sectionMobile}>
+              <IconButton
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </Container>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}

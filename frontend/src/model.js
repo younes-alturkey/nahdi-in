@@ -1,7 +1,8 @@
 const model = {
   userData: {
-    name: 'Lamar Bakhsh',
-    email: 'bakhsh.lk@nahdi.sa',
+    name: 'Barrak Aljean',
+    email: 'aljeaan.ba@nahdi.sa',
+    validToken: 'false',
   },
 }
 

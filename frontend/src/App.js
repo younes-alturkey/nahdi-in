@@ -5,13 +5,14 @@ import AppMenu from './components/AppMenu'
 import ParticlesComp from './components/ParticlesComp'
 import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
+import TeamScreen from './screens/TeamScreen'
 import PresentationScreen from './screens/PresentationScreen'
 import AccountScreen from './screens/AccountScreen'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 const App = () => {
   const [validSignIn, setValidSignIn] = useState(false)
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
   const mainPrimaryColor = darkMode ? '#121212' : '#FFFFFF'
   const mainSecondaryColor = '#1B5D6B'
   const darkTheme = createMuiTheme({
@@ -50,6 +51,7 @@ const App = () => {
 
   return (
     <Router>
+      <ParticlesComp />
       <ThemeProvider theme={darkTheme}>
         {validSignIn ? (
           <>
@@ -59,6 +61,7 @@ const App = () => {
               toggleDarkMode={toggleDarkMode}
             />
             <main>
+              <Route path="/team" component={TeamScreen} />
               <Route path="/account" component={AccountScreen} />
               <Route path="/welcome" component={PresentationScreen} />
               <Route path="/" component={DashboardScreen} exact />

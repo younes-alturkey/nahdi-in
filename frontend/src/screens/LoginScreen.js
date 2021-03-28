@@ -59,7 +59,7 @@ const LoginScreen = ({ SignInHandler }) => {
             variant="square"
             className={classes.large}
           />
-          <Paper className={classes.paper} elevation={3}>
+          <Paper className={classes.paper} elevation={20}>
             <Typography color="secondary" variant="h5" nowrap="true">
               Login
             </Typography>

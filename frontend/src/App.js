@@ -8,7 +8,6 @@ import DashboardScreen from './screens/DashboardScreen'
 import TeamScreen from './screens/TeamScreen'
 import PresentationScreen from './screens/PresentationScreen'
 import AccountScreen from './screens/AccountScreen'
-import LinearProgress from '@material-ui/core/LinearProgress'
 
 const App = () => {
   const [validSignIn, setValidSignIn] = useState(false)
@@ -70,11 +69,6 @@ const App = () => {
         ) : (
           <>
             <div className="nahdi-background">
-              <LinearProgress
-                value={100}
-                variant="determinate"
-                color="primary"
-              />
               <LoginScreen SignInHandler={SignInHandler} />
             </div>
           </>

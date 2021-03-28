@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import AppMenu from './components/AppMenu'
-import Footer from './components/Footer'
 import ParticlesComp from './components/ParticlesComp'
 import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
@@ -54,6 +53,7 @@ const App = () => {
       <ThemeProvider theme={darkTheme}>
         {validSignIn ? (
           <>
+            <ParticlesComp />
             <AppMenu
               SignInHandler={SignInHandler}
               toggleDarkMode={toggleDarkMode}
@@ -66,18 +66,16 @@ const App = () => {
           </>
         ) : (
           <>
-            <main>
+            <div className="nahdi-background">
               <LinearProgress
                 value={100}
                 variant="determinate"
-                color="secondary"
+                color="primary"
               />
-              <ParticlesComp />
               <LoginScreen SignInHandler={SignInHandler} />
-            </main>
+            </div>
           </>
         )}
-        <Footer />
       </ThemeProvider>
     </Router>
   )

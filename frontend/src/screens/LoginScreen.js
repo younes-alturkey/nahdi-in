@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoColored from '../assets/images/logo-colored.png'
+import LogoColored from '../assets/images/logo-white.png'
 import Avatar from '@material-ui/core/Avatar'
 import { Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   rootForm: {
     '& > *': {
       margin: theme.spacing(1),
-      width: '85%',
+      width: '75%',
     },
   },
   paper: {
@@ -27,11 +27,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   large: {
-    width: theme.spacing(25),
-    height: theme.spacing(10),
-    margin: theme.spacing(6),
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    width: theme.spacing(22),
+    height: theme.spacing(14),
+    padding: theme.spacing(6),
+    margin: 'auto',
   },
   divider: {
     borderBottom: 'solid',
@@ -42,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
     width: '1.5rem',
   },
   space: {
-    paddingTop: '1rem',
-    paddingBottom: '1rem',
+    paddingTop: '2rem',
+    paddingBottom: '2rem',
     fontSize: '0.8rem',
   },
 }))
@@ -53,9 +52,13 @@ const LoginScreen = ({ SignInHandler }) => {
 
   return (
     <Container className={classes.root}>
-      <Avatar src={LogoColored} variant="square" className={classes.large} />
-      <Grid justify="center" container spacing={3}>
+      <Grid justify="flex-end" container spacing={3}>
         <Grid item xs={12} lg={6} md={6}>
+          <Avatar
+            src={LogoColored}
+            variant="square"
+            className={classes.large}
+          />
           <Paper className={classes.paper} elevation={3}>
             <Typography color="secondary" variant="h5" nowrap="true">
               Login

@@ -3,7 +3,10 @@ import Typography from '@material-ui/core/Typography'
 
 const Footer = () => {
   return (
-    <Typography align="center">
+    <Typography
+      style={{ marginTop: '2rem', marginBottom: '2rem' }}
+      align="center"
+    >
       Nahdi &copy; {new Date().getFullYear()}
     </Typography>
   )

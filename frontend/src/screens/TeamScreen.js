@@ -5,7 +5,10 @@ import { makeStyles, withStyles } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-import { ButtonBase } from '@material-ui/core'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
 import Tooltip from '@material-ui/core/Tooltip'
 import Avatar from '@material-ui/core/Avatar'
 import Logo from '../assets/images/logo.png'
@@ -18,11 +21,18 @@ import VMCPhoto from '../assets/images/hossam.png'
 import CHROPhoto from '../assets/images/samer.png'
 import VPMPhoto from '../assets/images/hani.png'
 import VPCPhoto from '../assets/images/karim.png'
+import saleh from '../assets/images/saleh.png'
+import abdullah from '../assets/images/abdullah.png'
+import abdelelah from '../assets/images/abdelelah.png'
+import ibrahim from '../assets/images/ibrahim.png'
+import junaid from '../assets/images/junaid.png'
+import voog from '../assets/images/voog.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    paddingTop: '2rem',
+    marginTop: '2rem',
+    marginBottom: '5rem',
   },
   paper: {
     padding: theme.spacing(2),
@@ -35,9 +45,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   large: {
-    width: theme.spacing(30),
-    height: theme.spacing(30),
+    width: theme.spacing(20),
+    height: theme.spacing(20),
     boxShadow: theme.shadows[3],
+    cursor: 'pointer',
   },
   divider: {
     borderBottom: 'solid',
@@ -46,6 +57,13 @@ const useStyles = makeStyles((theme) => ({
     padding: '0.5rem',
     margin: 'auto',
     width: '1.5rem',
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   },
 }))
 
@@ -74,6 +92,133 @@ const TeamScreen = () => {
   const classes = useStyles()
   const [loading, setLoading] = useState('none')
 
+  const data = {
+    board: {
+      team: 'Board of Directors',
+      chairman: {
+        name: 'Saleh Bin Mahfouz',
+        title: 'Chairman',
+        image: saleh,
+        alt: 'Chairman Image',
+      },
+      founder: {
+        name: 'Abdullah Al Nahdi',
+        title: 'Founder and Managing Director',
+        image: abdullah,
+        alt: 'Founder Image',
+      },
+      boardMember1: {
+        name: 'Abdelelah Bin Mahfouz',
+        title: 'Board Member',
+        image: abdelelah,
+        alt: 'Board Member Image',
+      },
+      boardMember2: {
+        name: 'Junaid Bajwa',
+        title: 'Member',
+        image: junaid,
+        alt: 'Member Image',
+      },
+      boardMember3: {
+        name: 'Romaine Voog',
+        title: 'Member',
+        image: voog,
+        alt: 'Member Image',
+      },
+      boardMember4: {
+        name: 'Dr. Ibrahim Al Madhoun',
+        title: 'Board Member',
+        image: ibrahim,
+        alt: 'Board Member Image',
+      },
+    },
+    executive: {
+      team: 'Executive Team',
+      ceo: {
+        name: 'Yasser Joharji',
+        title: 'Chief Executive Officer',
+        image: CEOPhoto,
+        alt: 'CEO Image',
+      },
+      cfo: {
+        name: 'Mohammed Alkhubani',
+        title: 'Chief Financial Officer',
+        image: CFOPhoto,
+        alt: 'CFO Image',
+      },
+      vsp: {
+        name: 'Raed Monagel',
+        title: 'VP Supply Chain',
+        image: VSPPhoto,
+        alt: 'VP SP Image',
+      },
+      vnd: {
+        name: 'Zuhair Aytah',
+        title: 'VP Netowrk Development',
+        image: VNDPhoto,
+        alt: 'VP Network Development Image',
+      },
+      vit: {
+        name: 'Khalid Tadlaoui',
+        title: 'VP Information Technology',
+        image: VITPhoto,
+        alt: 'VP IT Image',
+      },
+      vmc: {
+        name: 'Hossam Khattab',
+        title: 'VP Marketing & External Communication',
+        image: VMCPhoto,
+        alt: 'VP Marketing & External Communication Image',
+      },
+      chro: {
+        name: 'Samer Bokhare',
+        title: 'VP Human Resources',
+        image: CHROPhoto,
+        alt: 'VP Human Resources Image',
+      },
+      vpm: {
+        name: 'Hani Ismail',
+        title: 'VP Marketing',
+        image: VPMPhoto,
+        alt: 'VP Marketing Image',
+      },
+      vpc: {
+        name: 'Karim Dimitri',
+        title: 'VP Commercial',
+        image: VPCPhoto,
+        alt: 'VP Commercial Image',
+      },
+    },
+  }
+
+  const [select, setSelect] = useState('board')
+  const [team, setTeam] = useState(data.board)
+
+  const handleChange = (event) => {
+    setSelect(event.target.value)
+
+    console.log(event.target.value)
+
+    if (select === 'board') setTeam(data.executive)
+    else setTeam(data.board)
+  }
+
+  const TeamSelector = () => {
+    return (
+      <FormControl
+        color="secondary"
+        variant="filled"
+        className={classes.formControl}
+      >
+        <InputLabel>Team</InputLabel>
+        <Select color="secondary" value={select} onChange={handleChange}>
+          <MenuItem value={'board'}>Board of Directors</MenuItem>
+          <MenuItem value={'executive'}>Executive Team</MenuItem>
+        </Select>
+      </FormControl>
+    )
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setLoading('block')
@@ -81,20 +226,21 @@ const TeamScreen = () => {
   })
   return (
     <>
-      <Container className={classes.root} style={{ display: loading }}>
-        <Grid className={classes.center} container spacing={3}>
-          <Grid item xs={12}>
-            <Typography>Executive Team</Typography>
-            <div className={classes.divider} />
-          </Grid>
-          <Grid item xs={12}>
-            <ButtonBase centerRipple="true">
+      {select === 'board' ? (
+        <Container className={classes.root} style={{ display: loading }}>
+          <Grid className={classes.center} container spacing={2}>
+            <Grid item xs={12}>
+              <TeamSelector />
+              <div className={classes.divider} />
+            </Grid>
+            <Grid item xs={12}>
               <HtmlTooltip
                 title={
                   <React.Fragment>
-                    <Typography color="inherit">Yasser Joharji</Typography>
-                    <b>{'Chief Executive Officer'}</b> <b>{'• CEO Office'}</b>{' '}
-                    <b>{'joharji.y@nahdi.sa'}</b> <b>{'+966 50 565 9843'}</b>
+                    <Typography color="inherit">
+                      {team.chairman.name}
+                    </Typography>
+                    <b>{team.chairman.title}</b>{' '}
                   </React.Fragment>
                 }
               >
@@ -108,223 +254,382 @@ const TeamScreen = () => {
                 >
                   <Avatar
                     className={classes.large}
-                    alt="CEO Image"
-                    src={CEOPhoto}
+                    alt={team.chairman.alt}
+                    src={team.chairman.image}
                   />
                 </Badge>
               </HtmlTooltip>
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Mohammed Alkhubani</Typography>
-                  <b>{'Chief Financial Officer'}</b> <b>{'• CFO Office'}</b>{' '}
-                  <b>{'alkhubani.ma@nahdi.sa'}</b> <b>{'+966 55 552 2355'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.founder.name}</Typography>
+                    <b>{team.founder.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="CFO Image"
-                  src={CFOPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Raed Monagel</Typography>
-                  <b>{'VP Supply Chain'}</b> <b>{'• Supply Chain'}</b>{' '}
-                  <b>{'monagel.rj@nahdi.sa'}</b> <b>{'+966 50 566 1807'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.founder.alt}
+                    src={team.founder.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">
+                      {team.boardMember1.name}
+                    </Typography>
+                    <b>{team.boardMember1.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="VP Supply Chain Image"
-                  src={VSPPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Zuhair Aytah</Typography>
-                  <b>{'VP Netowrk Development'}</b> <b>{'• Network Devs'}</b>{' '}
-                  <b>{'aytah.zm@nahdi.sa'}</b> <b>{'+966 50 568 5128'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.boardMember1.alt}
+                    src={team.boardMember1.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">
+                      {team.boardMember2.name}
+                    </Typography>
+                    <b>{team.boardMember2.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="VP Network Development Image"
-                  src={VNDPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Khalid Tadlaoui</Typography>
-                  <b>{'VP Information Technology'}</b> <b>{'• IT'}</b>{' '}
-                  <b>{'tadlaoui.k@nahdi.sa'}</b> <b>{'+966 55 993 3196'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.boardMember2.alt}
+                    src={team.boardMember2.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">
+                      {team.boardMember3.name}
+                    </Typography>
+                    <b>{team.boardMember3.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="VP IT Image"
-                  src={VITPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Hossam Khattab</Typography>
-                  <b>{'VP Marketing & External Communication'}</b> <b>{''}</b>{' '}
-                  <b>{'khattab.h@nahdi.sa'}</b> <b>{'+966 653 5288'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.boardMember3.alt}
+                    src={team.boardMember3.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">
+                      {team.boardMember4.name}
+                    </Typography>
+                    <b>{team.boardMember4.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="VP Marketing and External Comms Image"
-                  src={VMCPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.boardMember4.alt}
+                    src={team.boardMember4.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Samer Bokhare</Typography>
-                  <b>{'VP Human Resources'}</b> <b>{''}</b>{' '}
-                  <b>{'bokharee.s@nahdi.sa'}</b> <b>{'+966 55 766 2663'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+        </Container>
+      ) : (
+        <Container className={classes.root} style={{ display: loading }}>
+          <Grid className={classes.center} container spacing={3}>
+            <Grid item xs={12}>
+              <TeamSelector />
+              <div className={classes.divider} />
+            </Grid>
+            <Grid item xs={12}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.ceo.name}</Typography>
+                    <b>{team.ceo.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="VP Human Resources Image"
-                  src={CHROPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Hani Ismail</Typography>
-                  <b>{'VP Marketing'}</b> <b>{''}</b>{' '}
-                  <b>{'ismail.hm3@nahdi.sa'}</b> <b>{'+966 50 560 7791'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.ceo.alt}
+                    src={team.ceo.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.cfo.name}</Typography>
+                    <b>{team.cfo.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="VP Marketing Image"
-                  src={VPMPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <HtmlTooltip
-              title={
-                <React.Fragment>
-                  <Typography color="inherit">Karim Dimitri</Typography>
-                  <b>{'VP Commercial'}</b> <b>{''}</b>{' '}
-                  <b>{'dimitri.kg@nahdi.sa'}</b> <b>{'+966 54 3188 485'}</b>
-                </React.Fragment>
-              }
-            >
-              <Badge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.cfo.alt}
+                    src={team.cfo.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.vsp.name}</Typography>
+                    <b>{team.vsp.title}</b>{' '}
+                  </React.Fragment>
+                }
               >
-                <Avatar
-                  className={classes.large}
-                  alt="VP Commercial Image"
-                  src={VPCPhoto}
-                />
-              </Badge>
-            </HtmlTooltip>
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.vsp.alt}
+                    src={team.vsp.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.vnd.name}</Typography>
+                    <b>{team.vnd.title}</b>{' '}
+                  </React.Fragment>
+                }
+              >
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.vnd.alt}
+                    src={team.vnd.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.vit.name}</Typography>
+                    <b>{team.vit.title}</b>{' '}
+                  </React.Fragment>
+                }
+              >
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.vit.alt}
+                    src={team.vit.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.vmc.name}</Typography>
+                    <b>{team.vmc.title}</b>{' '}
+                  </React.Fragment>
+                }
+              >
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.vmc.alt}
+                    src={team.vmc.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.chro.name}</Typography>
+                    <b>{team.chro.title}</b>{' '}
+                  </React.Fragment>
+                }
+              >
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.chro.alt}
+                    src={team.chro.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.vpm.name}</Typography>
+                    <b>{team.vpm.title}</b>{' '}
+                  </React.Fragment>
+                }
+              >
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.vpm.alt}
+                    src={team.vpm.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
+            <Grid item xs={12} md={6} lg={3}>
+              <HtmlTooltip
+                title={
+                  <React.Fragment>
+                    <Typography color="inherit">{team.vpc.name}</Typography>
+                    <b>{team.vpc.title}</b>{' '}
+                  </React.Fragment>
+                }
+              >
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  badgeContent={<SmallAvatar alt="Nahdi Logo" src={Logo} />}
+                >
+                  <Avatar
+                    className={classes.large}
+                    alt={team.vpc.alt}
+                    src={team.vpc.image}
+                  />
+                </Badge>
+              </HtmlTooltip>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      )}
       {loading === 'none' ? <Loading /> : <></>}
     </>
   )

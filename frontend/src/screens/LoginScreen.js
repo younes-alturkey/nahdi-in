@@ -1,5 +1,5 @@
-import React from 'react'
-import LogoColored from '../assets/images/logo-white.png'
+import React, { useState } from 'react'
+import LogoColored from '../assets/images/logo-colored.png'
 import Avatar from '@material-ui/core/Avatar'
 import { Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   large: {
-    width: theme.spacing(22),
-    height: theme.spacing(14),
+    width: theme.spacing(23),
+    height: theme.spacing(8),
     padding: theme.spacing(6),
     margin: 'auto',
   },
@@ -44,15 +45,26 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '2rem',
     paddingBottom: '2rem',
     fontSize: '0.8rem',
+    textAlign: 'center',
+  },
+  login: {
+    padding: theme.spacing(1),
   },
 }))
 
 const LoginScreen = ({ SignInHandler }) => {
   const classes = useStyles()
+  const [loading, setLoading] = useState(false)
+
+  const pseudoLogin = () => {
+    setLoading(!loading)
+
+    setTimeout(() => SignInHandler(), 1000)
+  }
 
   return (
     <Container className={classes.root}>
-      <Grid justify="flex-end" container spacing={3}>
+      <Grid justify="center" container spacing={3}>
         <Grid item xs={12} lg={6} md={6}>
           <Avatar
             src={LogoColored}
@@ -92,9 +104,13 @@ const LoginScreen = ({ SignInHandler }) => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={SignInHandler}
+                onClick={pseudoLogin}
               >
-                Login
+                {loading ? (
+                  <CircularProgress color="inherit" />
+                ) : (
+                  <Typography className={classes.login}>Login</Typography>
+                )}
               </Button>
             </form>
             <Typography
@@ -114,6 +130,9 @@ const LoginScreen = ({ SignInHandler }) => {
           </Paper>
         </Grid>
       </Grid>
+      <Typography color="secondary" className={classes.space}>
+        Nahdi Medical Company &copy; 2021
+      </Typography>
     </Container>
   )
 }

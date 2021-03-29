@@ -11,7 +11,7 @@ import AccountScreen from './screens/AccountScreen'
 
 const App = () => {
   const [validSignIn, setValidSignIn] = useState(false)
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(false)
   const mainPrimaryColor = darkMode ? '#121212' : '#FFFFFF'
   const mainSecondaryColor = '#1B5D6B'
   const darkTheme = createMuiTheme({
@@ -68,7 +68,7 @@ const App = () => {
           </>
         ) : (
           <>
-            <div className="nahdi-background">
+            <div>
               <LoginScreen SignInHandler={SignInHandler} />
             </div>
           </>

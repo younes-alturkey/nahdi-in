@@ -39,6 +39,12 @@ import userImage from '../assets/images/barrak.png'
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    position: 'sticky',
+    top: 0,
+    bottom: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    zIndex: 5,
   },
   menuButton: {
     marginRight: theme.spacing(2),

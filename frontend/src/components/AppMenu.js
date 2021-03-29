@@ -200,7 +200,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
           <ListItemIcon>
             <SlideshowIcon />
           </ListItemIcon>
-          <ListItemText primary="Hi Presentation" />
+          <ListItemText primary="Welcome Presentation" />
         </ListItem>
 
         <ListItem button key="team" component={Link} to={'/team'}>
@@ -378,7 +378,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
               >
                 <div style={{ flexDirection: 'column' }}>
                   <SlideshowIcon />
-                  <Typography nowrap="true">Hi</Typography>
+                  <Typography nowrap="true">Welcome</Typography>
                 </div>
               </IconButton>
 

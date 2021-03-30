@@ -482,7 +482,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
                 color="inherit"
               >
                 <Avatar
-                  style={{ width: '1.5rem', height: '1.5rem' }}
+                  style={{ width: '1.7rem', height: '1.7rem' }}
                   alt="User Image"
                   src={userImage}
                 />

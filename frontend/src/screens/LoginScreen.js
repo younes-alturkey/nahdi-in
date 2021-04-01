@@ -81,7 +81,7 @@ const LoginScreen = ({ SignInHandler }) => {
               color="secondary"
               nowrap="true"
             >
-              Welcome back! Login to access Nahdi In.
+              Hala back, Nahdawi! Login to access Nahdi In.
             </Typography>
             <form className={classes.rootForm} noValidate autoComplete="off">
               <TextField

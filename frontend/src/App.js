@@ -7,7 +7,7 @@ import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
 import TeamScreen from './screens/TeamScreen'
 import PresentationScreen from './screens/PresentationScreen'
-import AccountScreen from './screens/AccountScreen'
+import ProfileScreen from './screens/ProfileScreen'
 
 const App = () => {
   const [validSignIn, setValidSignIn] = useState(false)
@@ -25,11 +25,11 @@ const App = () => {
     },
     typography: {
       fontFamily: [
-        'VariableBlack',
+        'Space Mono',
+        'Roboto',
         '-apple-system',
         'BlinkMacSystemFont',
         '"Segoe UI"',
-        'Roboto',
         '"Helvetica Neue"',
         'Arial',
         'sans-serif',
@@ -37,6 +37,7 @@ const App = () => {
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
       ].join(','),
+      fontSize: 11,
     },
   })
 
@@ -54,14 +55,13 @@ const App = () => {
       <ThemeProvider theme={darkTheme}>
         {validSignIn ? (
           <>
-            <ParticlesComp />
             <AppMenu
               SignInHandler={SignInHandler}
               toggleDarkMode={toggleDarkMode}
             />
             <main>
               <Route path="/team" component={TeamScreen} />
-              <Route path="/account" component={AccountScreen} />
+              <Route path="/profile" component={ProfileScreen} />
               <Route path="/welcome" component={PresentationScreen} />
               <Route path="/" component={DashboardScreen} exact />
             </main>

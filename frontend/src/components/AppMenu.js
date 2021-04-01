@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    // display: 'none',
+    fontFamily: 'VariableBlack',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -252,8 +252,8 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose} component={Link} to={'/account'}>
-        Account
+      <MenuItem onClick={handleMenuClose} component={Link} to={'/profile'}>
+        My Profile
       </MenuItem>
       <MenuItem
         onClick={() => {
@@ -278,7 +278,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
       onClose={handleMobileMenuClose}
       onClick={handleMobileMenuClose}
     >
-      <MenuItem component={Link} to={'/account'}>
+      <MenuItem component={Link} to={'/profile'}>
         <IconButton color="inherit">
           <Avatar
             style={{ width: '1.5rem', height: '1.5rem' }}
@@ -474,7 +474,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton
+              <ButtonBase
                 edge="end"
                 aria-controls={menuId}
                 aria-haspopup="true"
@@ -489,7 +489,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
                 <Typography style={{ paddingLeft: '0.5rem' }}>
                   {user.name}
                 </Typography>
-              </IconButton>
+              </ButtonBase>
             </div>
             <Switch
               checked={checked}

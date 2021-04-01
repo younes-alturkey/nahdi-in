@@ -8,6 +8,8 @@
   src: url('./assets/fonts/NahdiBlack.ttf') format('truetype');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
 * {
   -ms-overflow-style: none;
 }

@@ -17,7 +17,6 @@ import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -32,6 +31,7 @@ import HomeIcon from '@material-ui/icons/Home'
 import CastForEducationIcon from '@material-ui/icons/CastForEducation'
 import TextsmsIcon from '@material-ui/icons/Textsms'
 import SlideshowIcon from '@material-ui/icons/Slideshow'
+import AccountBoxIcon from '@material-ui/icons/AccountBox'
 import ExtensionIcon from '@material-ui/icons/Extension'
 import logoImage from '../assets/images/logo.png'
 import userImage from '../assets/images/barrak.png'
@@ -131,9 +131,13 @@ const useStyles = makeStyles((theme) => ({
   logout: {
     paddingLeft: theme.spacing(6),
   },
+  padding: {
+    padding: theme.spacing(1),
+  },
 }))
 
 export default function AppMenu({ toggleDarkMode, SignInHandler }) {
+  const [activeLink, setActiveLink] = React.useState('home')
   const user = useStoreState((state) => state.userData)
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -189,53 +193,157 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem button key="home" component={Link} to={'/'}>
+        <ListItem
+          onClick={() => {
+            setActiveLink('home')
+          }}
+          button
+          key="home"
+          component={Link}
+          to={'/'}
+        >
           <ListItemIcon>
-            <HomeIcon />
+            <HomeIcon color={activeLink === 'home' ? 'secondary' : 'inherit'} />
           </ListItemIcon>
-          <ListItemText primary="Home" />
+          <ListItemText>
+            <Typography color={activeLink === 'home' ? 'secondary' : 'inherit'}>
+              Home
+            </Typography>
+          </ListItemText>
         </ListItem>
 
-        <ListItem button key="welcome" component={Link} to={'/welcome'}>
+        <ListItem
+          onClick={() => {
+            setActiveLink('welcome')
+          }}
+          button
+          key="welcome"
+          component={Link}
+          to={'/welcome'}
+        >
           <ListItemIcon>
-            <SlideshowIcon />
+            <SlideshowIcon
+              color={activeLink === 'welcome' ? 'secondary' : 'inherit'}
+            />
           </ListItemIcon>
-          <ListItemText primary="Welcome Presentation" />
+          <ListItemText>
+            <Typography
+              color={activeLink === 'welcome' ? 'secondary' : 'inherit'}
+            >
+              Welcome Presentation
+            </Typography>
+          </ListItemText>
         </ListItem>
 
-        <ListItem button key="team" component={Link} to={'/team'}>
+        <ListItem
+          onClick={() => {
+            setActiveLink('team')
+          }}
+          button
+          key="team"
+          component={Link}
+          to={'/team'}
+        >
           <ListItemIcon>
-            <GroupIcon />
+            <GroupIcon
+              color={activeLink === 'team' ? 'secondary' : 'inherit'}
+            />
           </ListItemIcon>
-          <ListItemText primary="My Team" />
+          <ListItemText>
+            <Typography color={activeLink === 'team' ? 'secondary' : 'inherit'}>
+              My Team
+            </Typography>
+          </ListItemText>
         </ListItem>
 
-        <ListItem button key="learn" component={Link} to={'/learning'}>
+        <ListItem
+          onClick={() => {
+            setActiveLink('learning')
+          }}
+          button
+          key="learn"
+          component={Link}
+          to={'/learning'}
+        >
           <ListItemIcon>
-            <CastForEducationIcon />
+            <CastForEducationIcon
+              color={activeLink === 'learning' ? 'secondary' : 'inherit'}
+            />
           </ListItemIcon>
-          <ListItemText primary="Learning" />
+          <ListItemText>
+            <Typography
+              color={activeLink === 'learning' ? 'secondary' : 'inherit'}
+            >
+              Learning
+            </Typography>
+          </ListItemText>
         </ListItem>
 
-        <ListItem button key="quiz" component={Link} to={'/quiz'}>
+        <ListItem
+          onClick={() => {
+            setActiveLink('quiz')
+          }}
+          button
+          key="quiz"
+          component={Link}
+          to={'/quiz'}
+        >
           <ListItemIcon>
-            <ExtensionIcon />
+            <ExtensionIcon
+              color={activeLink === 'quiz' ? 'secondary' : 'inherit'}
+            />
           </ListItemIcon>
-          <ListItemText primary="Nahdi Knowledge Quiz" />
+          <ListItemText>
+            <Typography color={activeLink === 'quiz' ? 'secondary' : 'inherit'}>
+              Quiz
+            </Typography>
+          </ListItemText>
         </ListItem>
 
-        <ListItem button key="file" component={Link} to={'/files'}>
+        <ListItem
+          onClick={() => {
+            setActiveLink('files')
+          }}
+          button
+          key="file"
+          component={Link}
+          to={'/files'}
+        >
           <ListItemIcon>
-            <DescriptionIcon />
+            <DescriptionIcon
+              color={activeLink === 'files' ? 'secondary' : 'inherit'}
+            />
           </ListItemIcon>
-          <ListItemText primary="Files and Documents" />
+          <ListItemText>
+            <Typography
+              color={activeLink === 'files' ? 'secondary' : 'inherit'}
+            >
+              Files and Docs
+            </Typography>
+          </ListItemText>
         </ListItem>
 
-        <ListItem button key="feedback" component={Link} to={'/survey'}>
+        <ListItem
+          onClick={() => {
+            setActiveLink('survey')
+          }}
+          button
+          key="feedback"
+          component={Link}
+          to={'/survey'}
+        >
           <ListItemIcon>
-            <ThumbsUpDownIcon />
+            <ThumbsUpDownIcon
+              color={activeLink === 'survey' ? 'secondary' : 'inherit'}
+            />
           </ListItemIcon>
-          <ListItemText primary="Onboarding Survey" />
+          <ListItemText>
+            <Typography
+              color={activeLink === 'survey' ? 'secondary' : 'inherit'}
+            >
+              Onboarding Survey
+            </Typography>
+          </ListItemText>
         </ListItem>
       </List>
     </div>
@@ -252,16 +360,70 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose} component={Link} to={'/profile'}>
-        My Profile
+      <MenuItem
+        onClick={() => {
+          handleMenuClose()
+          setActiveLink('profile')
+        }}
+        component={Link}
+        to={'/profile'}
+      >
+        <AccountBoxIcon
+          color={activeLink === 'profile' ? 'secondary' : 'inherit'}
+        />
+        <Typography
+          color={activeLink === 'profile' ? 'secondary' : 'inherit'}
+          className={classes.padding}
+        >
+          My Profile
+        </Typography>
       </MenuItem>
+      <MenuItem
+        onClick={() => {
+          handleMenuClose()
+          setActiveLink('files')
+        }}
+        component={Link}
+        to={'/files'}
+      >
+        <DescriptionIcon
+          color={activeLink === 'files' ? 'secondary' : 'inherit'}
+        />
+        <Typography
+          color={activeLink === 'files' ? 'secondary' : 'inherit'}
+          className={classes.padding}
+        >
+          Files and Docs
+        </Typography>
+      </MenuItem>
+
+      <MenuItem
+        onClick={() => {
+          handleMenuClose()
+          setActiveLink('survey')
+        }}
+        component={Link}
+        to={'/survey'}
+      >
+        <ThumbsUpDownIcon
+          color={activeLink === 'survey' ? 'secondary' : 'inherit'}
+        />
+        <Typography
+          color={activeLink === 'survey' ? 'secondary' : 'inherit'}
+          className={classes.padding}
+        >
+          Onboarding Survey
+        </Typography>
+      </MenuItem>
+
       <MenuItem
         onClick={() => {
           handleMenuClose()
           SignInHandler()
         }}
       >
-        Logout
+        <ExitToAppIcon />
+        <Typography className={classes.padding}>Logout</Typography>
       </MenuItem>
     </Menu>
   )
@@ -278,33 +440,63 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
       onClose={handleMobileMenuClose}
       onClick={handleMobileMenuClose}
     >
-      <MenuItem component={Link} to={'/profile'}>
-        <IconButton color="inherit">
+      <MenuItem
+        onClick={() => {
+          setActiveLink('profile')
+        }}
+        component={Link}
+        to={'/profile'}
+      >
+        <IconButton color={activeLink === 'profile' ? 'secondary' : 'inherit'}>
           <Avatar
             style={{ width: '1.5rem', height: '1.5rem' }}
             alt="User Image"
             src={userImage}
           />
         </IconButton>
-        <p>{user.name}</p>
+        <Typography color={activeLink === 'profile' ? 'secondary' : 'inherit'}>
+          {user.name}
+        </Typography>
       </MenuItem>
-      <MenuItem component={Link} to={'/message'}>
-        <IconButton>
+      <MenuItem
+        onClick={() => {
+          setActiveLink('chat')
+        }}
+        component={Link}
+        to={'/chat'}
+      >
+        <IconButton color={activeLink === 'chat' ? 'secondary' : 'inherit'}>
           <Badge badgeContent={5} color="secondary">
             <MailIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        <Typography color={activeLink === 'chat' ? 'secondary' : 'inherit'}>
+          Messages
+        </Typography>
       </MenuItem>
-      <MenuItem>
-        <IconButton>
+      <MenuItem
+        onClick={() => {
+          setActiveLink('notifications')
+        }}
+      >
+        <IconButton
+          color={activeLink === 'notifications' ? 'secondary' : 'inherit'}
+        >
           <Badge badgeContent={3} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <Typography
+          color={activeLink === 'notifications' ? 'secondary' : 'inherit'}
+        >
+          Notifications
+        </Typography>
       </MenuItem>
-      <MenuItem onClick={() => SignInHandler()}>
+      <MenuItem
+        onClick={() => {
+          SignInHandler()
+        }}
+      >
         <IconButton>
           <ExitToAppIcon />
         </IconButton>
@@ -337,7 +529,11 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
             >
               <MenuIcon />
             </IconButton>
-            <ButtonBase component={Link} to={'/'}>
+            <ButtonBase
+              onClick={() => setActiveLink('home')}
+              component={Link}
+              to={'/'}
+            >
               <Avatar
                 className={classes.logo}
                 alt="Nahdi Logo"
@@ -352,7 +548,8 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
             <div className={classes.sectionDesktop}>
               <IconButton
                 edge="start"
-                color="inherit"
+                color={activeLink === 'home' ? 'secondary' : 'inherit'}
+                onClick={() => setActiveLink('home')}
                 size="small"
                 style={{
                   marginRight: '2rem',
@@ -367,8 +564,9 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
               </IconButton>
 
               <IconButton
+                color={activeLink === 'welcome' ? 'secondary' : 'inherit'}
+                onClick={() => setActiveLink('welcome')}
                 edge="start"
-                color="inherit"
                 size="small"
                 style={{
                   marginRight: '2rem',
@@ -384,7 +582,8 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
 
               <IconButton
                 edge="start"
-                color="inherit"
+                color={activeLink === 'team' ? 'secondary' : 'inherit'}
+                onClick={() => setActiveLink('team')}
                 size="small"
                 style={{
                   marginRight: '2rem',
@@ -400,7 +599,8 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
 
               <IconButton
                 edge="start"
-                color="inherit"
+                color={activeLink === 'quiz' ? 'secondary' : 'inherit'}
+                onClick={() => setActiveLink('quiz')}
                 size="small"
                 style={{
                   marginRight: '2rem',
@@ -416,10 +616,11 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
 
               <IconButton
                 edge="start"
-                color="inherit"
+                color={activeLink === 'learning' ? 'secondary' : 'inherit'}
+                onClick={() => setActiveLink('learning')}
                 size="small"
                 style={{
-                  marginRight: '2rem',
+                  marginRight: '1rem',
                 }}
                 component={Link}
                 to={'/learning'}
@@ -430,39 +631,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
                 </div>
               </IconButton>
 
-              <IconButton
-                edge="start"
-                color="inherit"
-                size="small"
-                style={{
-                  marginRight: '2rem',
-                }}
-                component={Link}
-                to={'/files'}
-              >
-                <div style={{ flexDirection: 'column' }}>
-                  <DescriptionIcon />
-                  <Typography nowrap="true">Files</Typography>
-                </div>
-              </IconButton>
-
-              <IconButton
-                edge="start"
-                color="inherit"
-                size="small"
-                style={{
-                  marginRight: '2rem',
-                }}
-                component={Link}
-                to={'/survey'}
-              >
-                <div style={{ flexDirection: 'column' }}>
-                  <ThumbsUpDownIcon />
-                  <Typography nowrap="true">Survey</Typography>
-                </div>
-              </IconButton>
-
-              <Divider orientation="vertical" flexItem />
+              <hr />
 
               <IconButton color="inherit">
                 <Badge badgeContent={5} color="secondary">

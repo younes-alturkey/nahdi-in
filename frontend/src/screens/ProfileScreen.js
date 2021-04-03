@@ -7,13 +7,15 @@ import Grid from '@material-ui/core/Grid'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf'
 import userImage from '../assets/images/barrak.png'
 import specialist from '../assets/images/specialist.png'
+import Badge from '@material-ui/core/Badge'
 import logo from '../assets/images/logo.png'
+import ChangeImage from '../assets/images/change-img.png'
 import BehavioralReportPDF from '../assets/pdf/BarrakAljean-BehavioralReport.pdf'
 import PersonalDevelopmentPDF from '../assets/pdf/BarrakAljean-PersonalDevelopment.pdf'
 import List from '@material-ui/core/List'
@@ -21,6 +23,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import MenuItem from '@material-ui/core/MenuItem'
+import BorderColorIcon from '@material-ui/icons/BorderColor'
 import EditIcon from '@material-ui/icons/Edit'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -44,15 +47,24 @@ const statuses = [
   },
 ]
 
+const SmallAvatar = withStyles((theme) => ({
+  root: {
+    width: 25,
+    height: 25,
+    border: `2px solid ${theme.palette.background.paper}`,
+  },
+}))(Avatar)
+
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(5),
     marginBottom: theme.spacing(8),
     padding: theme.spacing(3),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    borderColor: '#1B5D6B',
+    borderColor: '#4096A6',
+    borderRadius: theme.spacing(2),
   },
   avatar: {
     margin: theme.spacing(1),
@@ -69,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     borderBottom: 'solid',
     borderWidth: '1px',
-    color: '#1B5D6B',
+    color: '#4096A6',
     padding: '0.5rem',
     margin: 'auto',
     width: '1.5rem',
@@ -82,10 +94,10 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3),
     fontSize: '0.7rem',
-    color: '#1B5D6B',
+    color: '#4096A6',
   },
   dwnButton: {
-    color: '#1B5D6B',
+    color: '#4096A6',
   },
 }))
 
@@ -101,8 +113,18 @@ export default function ProfileScreen() {
     <Container component="main" maxWidth="md">
       <CssBaseline />
       <Paper elevation={20} className={classes.paper}>
-        <Avatar src={userImage} alt="User" className={classes.avatar} />
-        <Typography component="h1" variant="h5">
+        <Badge
+          overlap="circle"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          badgeContent={<SmallAvatar alt="Change Image" src={ChangeImage} />}
+        >
+          <Avatar className={classes.avatar} src={userImage} alt="User" />
+        </Badge>
+        {/* <Avatar src={userImage} alt="User" className={classes.avatar} /> */}
+        <Typography component="h2" variant="h6">
           Account Details
         </Typography>
         <div className={classes.divider} />
@@ -168,6 +190,26 @@ export default function ProfileScreen() {
                 disabled
               />
             </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                label="Internship Duration"
+                color="secondary"
+                value="6 months"
+                disabled
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                label="End Date"
+                color="secondary"
+                value="31 Apr 2021"
+                disabled
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="filled"
@@ -202,9 +244,9 @@ export default function ProfileScreen() {
         </form>
       </Paper>
       <Paper elevation={20} className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component="h2" variant="h6">
           PI Assessment:{' '}
-          <strong style={{ color: '#1B5D6B' }}>Specialist</strong>
+          <strong style={{ color: '#4096A6' }}>Specialist</strong>
         </Typography>
         <div className={classes.divider} />
         <br />
@@ -256,7 +298,7 @@ export default function ProfileScreen() {
             <ButtonBase
               style={{
                 marginRight: '2rem',
-                color: '#1B5D6B',
+                color: '#4096A6',
               }}
             >
               <PictureAsPdfIcon fontSize="large" />
@@ -265,7 +307,7 @@ export default function ProfileScreen() {
                 style={{
                   flexDirection: 'column',
                   textDecoration: 'none',
-                  color: '#1B5D6B',
+                  color: '#4096A6',
                   paddingLeft: 5,
                 }}
                 target="_blank"
@@ -279,7 +321,7 @@ export default function ProfileScreen() {
             <ButtonBase
               style={{
                 marginRight: '2rem',
-                color: '#1B5D6B',
+                color: '#4096A6',
               }}
             >
               <PictureAsPdfIcon fontSize="large" />
@@ -288,7 +330,7 @@ export default function ProfileScreen() {
                 style={{
                   flexDirection: 'column',
                   textDecoration: 'none',
-                  color: '#1B5D6B',
+                  color: '#4096A6',
                   paddingLeft: 5,
                 }}
                 target="_blank"
@@ -303,7 +345,7 @@ export default function ProfileScreen() {
         </Grid>
       </Paper>
       <Paper elevation={20} className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component="h2" variant="h6">
           Projects
         </Typography>
         <div className={classes.divider} />
@@ -316,14 +358,14 @@ export default function ProfileScreen() {
                   <Avatar src={logo} />
                 </ListItemAvatar>
                 <ListItemText
-                  style={{ color: '#1B5D6B' }}
+                  style={{ color: '#4096A6' }}
                   primary="Nahdi App Competitor Analysis Report - 100%"
                   secondary="Jan 24, 2021"
                 />
-                <IconButton
-                  style={{ color: '#DC143C' }}
-                  onClick={console.log('Trying to edit project details')}
-                >
+                <IconButton style={{ color: '#4096A6' }}>
+                  <BorderColorIcon />
+                </IconButton>
+                <IconButton style={{ color: '#DC143C' }}>
                   <DeleteIcon />
                 </IconButton>
               </ListItem>
@@ -332,14 +374,15 @@ export default function ProfileScreen() {
                   <Avatar src={logo} />
                 </ListItemAvatar>
                 <ListItemText
-                  style={{ color: '#1B5D6B' }}
+                  style={{ color: '#4096A6' }}
                   primary="HTML Presentation Demo with Reveal.js - 100%"
                   secondary="Feb 7, 2021"
                 />
-                <IconButton
-                  style={{ color: '#DC143C' }}
-                  onClick={console.log('Trying to edit project details')}
-                >
+
+                <IconButton style={{ color: '#4096A6' }}>
+                  <BorderColorIcon />
+                </IconButton>
+                <IconButton style={{ color: '#DC143C' }}>
                   <DeleteIcon />
                 </IconButton>
               </ListItem>
@@ -348,14 +391,15 @@ export default function ProfileScreen() {
                   <Avatar src={logo} />
                 </ListItemAvatar>
                 <ListItemText
-                  style={{ color: '#1B5D6B' }}
+                  style={{ color: '#4096A6' }}
                   primary="PoC Mobile App built with React Native - 100%"
                   secondary="Mar 29, 2021"
                 />
-                <IconButton
-                  style={{ color: '#DC143C' }}
-                  onClick={console.log('Trying to edit project details')}
-                >
+
+                <IconButton style={{ color: '#4096A6' }}>
+                  <BorderColorIcon />
+                </IconButton>
+                <IconButton style={{ color: '#DC143C' }}>
                   <DeleteIcon />
                 </IconButton>
               </ListItem>
@@ -364,14 +408,15 @@ export default function ProfileScreen() {
                   <Avatar src={logo} />
                 </ListItemAvatar>
                 <ListItemText
-                  style={{ color: '#1B5D6B' }}
+                  style={{ color: '#4096A6' }}
                   primary="Adobe Indesign Script Modification - 40%"
                   secondary="In Progress"
                 />
-                <IconButton
-                  style={{ color: '#DC143C' }}
-                  onClick={console.log('Trying to edit project details')}
-                >
+
+                <IconButton style={{ color: '#4096A6' }}>
+                  <BorderColorIcon />
+                </IconButton>
+                <IconButton style={{ color: '#DC143C' }}>
                   <DeleteIcon />
                 </IconButton>
               </ListItem>
@@ -380,14 +425,15 @@ export default function ProfileScreen() {
                   <Avatar src={logo} />
                 </ListItemAvatar>
                 <ListItemText
-                  style={{ color: '#1B5D6B' }}
+                  style={{ color: '#4096A6' }}
                   primary="On-Boarding Platform for Interns - 30%"
                   secondary="In Progress"
                 />
-                <IconButton
-                  style={{ color: '#DC143C' }}
-                  onClick={console.log('Trying to edit project details')}
-                >
+
+                <IconButton style={{ color: '#4096A6' }}>
+                  <BorderColorIcon />
+                </IconButton>
+                <IconButton style={{ color: '#DC143C' }}>
                   <DeleteIcon />
                 </IconButton>
               </ListItem>
@@ -396,14 +442,15 @@ export default function ProfileScreen() {
                   <Avatar src={logo} />
                 </ListItemAvatar>
                 <ListItemText
-                  style={{ color: '#1B5D6B' }}
+                  style={{ color: '#4096A6' }}
                   primary="Adobe Indesign New Script - 0%"
                   secondary="On Hold"
                 />
-                <IconButton
-                  style={{ color: '#DC143C' }}
-                  onClick={console.log('Trying to edit project details')}
-                >
+
+                <IconButton style={{ color: '#4096A6' }}>
+                  <BorderColorIcon />
+                </IconButton>
+                <IconButton style={{ color: '#DC143C' }}>
                   <DeleteIcon />
                 </IconButton>
               </ListItem>

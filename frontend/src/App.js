@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import AppMenu from './components/AppMenu'
-import ParticlesComp from './components/ParticlesComp'
+import FakeAppMenu from './components/FakeAppMenu'
+import AppBackground from './components/AppBackground'
 import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
 import TeamScreen from './screens/TeamScreen'
 import PresentationScreen from './screens/PresentationScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import QuizScreen from './screens/QuizScreen'
 
 const App = () => {
   const [validSignIn, setValidSignIn] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
   const mainPrimaryColor = darkMode ? '#121212' : '#FFFFFF'
-  const mainSecondaryColor = '#1B5D6B'
+  const mainSecondaryColor = '#4096A6'
   const darkTheme = createMuiTheme({
     palette: {
       primary: {
@@ -51,7 +53,7 @@ const App = () => {
 
   return (
     <Router>
-      <ParticlesComp />
+      <AppBackground />
       <ThemeProvider theme={darkTheme}>
         {validSignIn ? (
           <>
@@ -60,6 +62,7 @@ const App = () => {
               toggleDarkMode={toggleDarkMode}
             />
             <main>
+              <Route path="/quiz" component={QuizScreen} />
               <Route path="/team" component={TeamScreen} />
               <Route path="/profile" component={ProfileScreen} />
               <Route path="/welcome" component={PresentationScreen} />
@@ -69,6 +72,7 @@ const App = () => {
         ) : (
           <>
             <div>
+              <FakeAppMenu />
               <LoginScreen SignInHandler={SignInHandler} />
             </div>
           </>

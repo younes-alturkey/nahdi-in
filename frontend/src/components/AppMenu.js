@@ -661,7 +661,7 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
               </ButtonBase>
             </div>
             <Switch
-              checked={checked}
+              checked={!checked}
               onChange={() => {
                 toggleDarkMode()
                 setChecked(!checked)

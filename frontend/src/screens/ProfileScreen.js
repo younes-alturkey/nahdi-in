@@ -113,17 +113,18 @@ export default function ProfileScreen() {
     <Container component="main" maxWidth="md">
       <CssBaseline />
       <Paper elevation={20} className={classes.paper}>
-        <Badge
-          overlap="circle"
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-          badgeContent={<SmallAvatar alt="Change Image" src={ChangeImage} />}
-        >
-          <Avatar className={classes.avatar} src={userImage} alt="User" />
-        </Badge>
-        {/* <Avatar src={userImage} alt="User" className={classes.avatar} /> */}
+        <ButtonBase centerRipple={true}>
+          <Badge
+            overlap="circle"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            badgeContent={<SmallAvatar alt="Change Image" src={ChangeImage} />}
+          >
+            <Avatar className={classes.avatar} src={userImage} alt="User" />
+          </Badge>
+        </ButtonBase>
         <Typography component="h2" variant="h6">
           Account Details
         </Typography>

@@ -13,7 +13,7 @@ import QuizScreen from './screens/QuizScreen'
 
 const App = () => {
   const [validSignIn, setValidSignIn] = useState(false)
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
   const mainPrimaryColor = darkMode ? '#121212' : '#FFFFFF'
   const mainSecondaryColor = '#4096A6'
   const darkTheme = createMuiTheme({

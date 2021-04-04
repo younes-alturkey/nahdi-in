@@ -18,6 +18,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import abdulelah from '../assets/images/abdulelah.png'
 import younes from '../assets/images/younes.png'
 import barrak from '../assets/images/barrak.png'
+import mohammed from '../assets/images/mohammed.png'
 import first from '../assets/images/first.png'
 import second from '../assets/images/second.png'
 import third from '../assets/images/third.png'
@@ -356,11 +357,55 @@ export default function Quiz() {
               <ListItem>
                 <ListItemAvatar>
                   <IconButton component={Link} to={'/profile'}>
-                    <AccountCircleIcon className={classes.profileIcon} />
+                    <Avatar src={mohammed} />
                   </IconButton>
                 </ListItemAvatar>
                 <ListItemText secondary="287 kudos">
+                  <Typography>Mohammed Alharthi</Typography>
+                </ListItemText>
+              </ListItem>
+
+              <ListItem>
+                <ListItemAvatar>
+                  <IconButton component={Link} to={'/profile'}>
+                    <AccountCircleIcon className={classes.profileIcon} />
+                  </IconButton>
+                </ListItemAvatar>
+                <ListItemText secondary="286 kudos">
                   <Typography>Refal Hadrawi</Typography>
+                </ListItemText>
+              </ListItem>
+
+              <ListItem>
+                <ListItemAvatar>
+                  <IconButton component={Link} to={'/profile'}>
+                    <AccountCircleIcon className={classes.profileIcon} />
+                  </IconButton>
+                </ListItemAvatar>
+                <ListItemText secondary="266 kudos">
+                  <Typography>Saeed Alasbali</Typography>
+                </ListItemText>
+              </ListItem>
+
+              <ListItem>
+                <ListItemAvatar>
+                  <IconButton component={Link} to={'/profile'}>
+                    <AccountCircleIcon className={classes.profileIcon} />
+                  </IconButton>
+                </ListItemAvatar>
+                <ListItemText secondary="261 kudos">
+                  <Typography>Abdulshakour Qader</Typography>
+                </ListItemText>
+              </ListItem>
+
+              <ListItem>
+                <ListItemAvatar>
+                  <IconButton component={Link} to={'/profile'}>
+                    <AccountCircleIcon className={classes.profileIcon} />
+                  </IconButton>
+                </ListItemAvatar>
+                <ListItemText secondary="168 kudos">
+                  <Typography>Marah Alshaban</Typography>
                 </ListItemText>
               </ListItem>
             </List>

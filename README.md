@@ -13,7 +13,7 @@
 <ul>
 <li>Fully custom Prototype based on Product Owner Specifications</li>
 <li>Built using React & Material Design library</li>
-<li>Built on top of Redux and ready to be hooked to Express.js server</li>
+<li>Built on top of Redux and ready to connected to Express.js server</li>
 <li>Project was cancelled mid-development</li>
 </ul>
 

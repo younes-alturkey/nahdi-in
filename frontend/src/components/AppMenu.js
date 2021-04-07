@@ -478,6 +478,8 @@ export default function AppMenu({ toggleDarkMode, SignInHandler }) {
         onClick={() => {
           setActiveLink('notifications')
         }}
+        component={Link}
+        to={'/notifications'}
       >
         <IconButton
           color={activeLink === 'notifications' ? 'secondary' : 'inherit'}

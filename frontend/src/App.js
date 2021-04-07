@@ -5,11 +5,12 @@ import AppMenu from './components/AppMenu'
 import FakeAppMenu from './components/FakeAppMenu'
 import AppBackground from './components/AppBackground'
 import LoginScreen from './screens/LoginScreen'
-import DashboardScreen from './screens/DashboardScreen'
 import TeamScreen from './screens/TeamScreen'
 import PresentationScreen from './screens/PresentationScreen'
+import SurveyScreen from './screens/SurveyScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import QuizScreen from './screens/QuizScreen'
+import SoonScreen from './screens/SoonScreen'
 
 const App = () => {
   const [validSignIn, setValidSignIn] = useState(false)
@@ -62,11 +63,16 @@ const App = () => {
               toggleDarkMode={toggleDarkMode}
             />
             <main>
+              <Route path="/notifications" component={SoonScreen} />
+              <Route path="/chat" component={SoonScreen} />
+              <Route path="/learning" component={SoonScreen} />
+              <Route path="/survey" component={SurveyScreen} />
+              <Route path="/files" component={SoonScreen} />
               <Route path="/quiz" component={QuizScreen} />
               <Route path="/team" component={TeamScreen} />
               <Route path="/profile" component={ProfileScreen} />
               <Route path="/welcome" component={PresentationScreen} />
-              <Route path="/" component={DashboardScreen} exact />
+              <Route path="/" component={SoonScreen} exact />
             </main>
           </>
         ) : (

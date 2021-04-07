@@ -4,25 +4,24 @@
 
 # Live Demo
 
-![Live Demo](https://github.com/younes-alturkey/nahdi-mobile-rn-algolia/blob/master/demo.gif)
+![Live Demo](https://github.com/younes-alturkey/nahdi-in/blob/master/demo.gif)
 
-# Nahdi Mobile with React Native
+# Nahdi Intern Journey Custom Platform
 
 ![Logo](https://github.com/younes-alturkey/nahdi-mobile-rn-algolia/blob/master/nahdi-logo.png)
 
 <ul>
-<li>Fully custom Proof of Concept E-commerce mobile app</li>
-<li>Built using React Native & Expo</li>
-<li>Integrated and connected with Algolia and Magento APIs</li>
-<li>Replica of current Nahdi mobile app</li>
+<li>Fully custom Prototype based on Product Owner Specifications</li>
+<li>Built using React & Material Design library</li>
+<li>Built on top of Redux and ready to be hooked to Express.js server</li>
+<li>Project was cancelled mid-development</li>
 </ul>
 
 # Supervison By
 
 <ul>
 <li>Director Aiman Alsaggaf</li>
-<li>Eng Hamdin Bisharah</li>
-<li>Eng Mahmoud Ismaeel</li>
+<li>Lamar Bakhsh</li>
 </ul>
 
 # Developed By

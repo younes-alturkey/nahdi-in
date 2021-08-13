@@ -1,7 +1,3 @@
-# Netlify
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/776b34f6-506c-4ab6-9790-a4da1f2ae13f/deploy-status)](https://app.netlify.com/sites/nahdiin/deploys)
-
 # Live Demo
 
 ![Live Demo](https://github.com/younes-alturkey/nahdi-in/blob/master/demo.gif)
